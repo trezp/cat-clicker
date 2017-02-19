@@ -2,32 +2,22 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const requestPromise = require('request-promise');
-const qsConfig = require('./uri');
-
-function getWordsWith(type){
-  /* takes in the name of the API object's relationshipType so the associated
-  word list can be found with the Array.find method. */
-  return function wordList(obj){
-    return obj.relationshipType === type;
-  }
-}
-
-function getRandomNum(length){
-  return Math.floor(Math.random() * length);
-}
+const options = require('./options');
+const utils = require('./utilities');
 
 router.get('/', function(req, res, next) {
-  const relatedWords = qsConfig(req.query.wordsearch, 'relatedWords');
+  const relatedWords = options(req.query.wordsearch, 'relatedWords');
 
   requestPromise(relatedWords)
     .then((response) => {
-      req.wordList = response.find(getWordsWith('same-context')).words;
-      const num = getRandomNum(req.wordList.length);
+      console.log(response)
+      req.wordList = response.find(utils.getWordsWith('same-context')).words;
+      const num = utils.getRandomNum(req.wordList.length);
       req.relatedWord = req.wordList[num];
-      return requestPromise(qsConfig(req.wordList[num], 'examples'));
+      return requestPromise(options(req.wordList[num], 'examples'));
     })
     .then((response) =>{
-      const num = getRandomNum(response.examples.length);
+      const num = utils.getRandomNum(response.examples.length);
       req.exampleText = response.examples[num].text;
     })
     .finally((response) => {
