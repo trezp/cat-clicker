@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Search for a word to get a related word
+  form(action="/" method='get')
+    label(id="wordsearch") Your word:
+    input(
+      type='text'
+      name='wordsearch'
+      placeholder='lackluster'
+    )
+  h4 Related word: #{relatedWord}
+  h4 Related sentence: #{words}
