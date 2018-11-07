@@ -7,14 +7,6 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 
-const request = require('request');
-const rp = require('request-promise');
-
-const apiKey = 'dad75fe710a1469149c6b023eeb0b3eae1a680fe0c7ee6d93';
-const word = "salmon";
-const url = 'http://api.wordnik.com:80/v4/word.json/salmon/examples?includeDuplicates=false&useCanonical=false&skip=0&limit=5&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
-
-
 var app = express();
 
 

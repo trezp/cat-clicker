@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1 Search for a word to get a related word
+  h1 Extra Marvelous Poem Generator 3000
   form(action="/" method='get')
     label(id="wordsearch") Your word:
     input(
@@ -9,5 +9,25 @@ block content
       name='wordsearch'
       placeholder='lackluster'
     )
-  h4 Related word: #{relatedWord}
-  h4 Related sentence: #{words}
+   
+    each poem in poetry
+      p= poem
+  //- h3 #{stuff}
+  //- h4 Related word: #{relatedWord}
+  //- h4 Related sentence: #{words}
+  //- h4 Rhymes: 
+  //-   ul
+  //-     each word in rhymes
+  //-       li= word 
+  //- h4 Same Context: 
+  //-   ul
+  //-     each word in context
+  //-       li= word 
+  //- h4 Synonyms: 
+  //-   ul
+  //-     each word in syn
+  //-       li= word 
+  //- h4 Cross Reference: 
+  //-   ul
+  //-     each word in cross
+  //-       li= word 
